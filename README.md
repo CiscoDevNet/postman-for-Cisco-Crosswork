@@ -1,8 +1,8 @@
 # Postman collections for Cisco Crosswork Network Change Automation and Health Insights APIs
 
-This public repo contains a [POSTMAN](https://getpostman.com) collections that can be used to interact with Cisco Crosswork Network Change Automation ("NCA") and Health Insights ("HI") APIs.
+This repo contains [POSTMAN](https://getpostman.com) collections that can be used to interact with Cisco Crosswork Network Change Automation ("NCA") and Health Insights ("HI") APIs.
 
-The colloections are desinged to help you get srated with using APIs with Crosswork NCA and HI, feel free to modify them as you see fit and to add more calls to the collection.
+The collections are designed to help you get started with using APIs with Crosswork NCA and HI. Feel free to modify them as you see fit and to add more calls to the collection. If you want to contribute to the collections, send us a pull request with your changes and additions.
 
 # Requirements
 
@@ -13,7 +13,7 @@ The NCA and HI Postman collections will need:
 
 # Setup 
 
-If you don't have Postman already installed, you can download it from [here](https://getpostman.com). Once you install it, you can follow the steps below to import the collection and environment:
+If you don't have Postman already installed, you can download it from [here](https://getpostman.com). Once you install it, follow the steps below to import the collections and environment:
 
 
 1. Click on `Import`, browse to the location where you cloned this repo and add the two files:
