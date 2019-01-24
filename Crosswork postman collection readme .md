@@ -8,7 +8,7 @@ The colloections are desinged to help you get srated with using APIs with Crossw
 
 The NCA and HI Postman collections will need:
 * Postman 6.7.0 +
-* Cisco Crosswork NCA and HI V 3.0 +  
+* Cisco Crosswork NCA and HI 3.0 +  
 * Cisco NSO 4.5.5 + 
 
 # Setup 
