@@ -1,0 +1,617 @@
+{
+	"info": {
+		"_postman_id": "81387934-859f-4e0b-a85c-ddd4ea8d4c8b",
+		"name": "Crosswork-NSO 2.0h PubIP",
+		"description": "For NSO 4.4.5.3 and XR NED 6.6.1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Ticket",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{any_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{any_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/SSO/v1/tickets?username=admin&password=admin",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"SSO",
+						"v1",
+						"tickets"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "admin"
+						},
+						{
+							"key": "password",
+							"value": "admin"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{any_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{any_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "https://198.18.134.219:30603/app-dashboard",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/SSO/v1/tickets/{{ticket}}",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"SSO",
+						"v1",
+						"tickets",
+						"{{ticket}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Job",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"job_id\": \"\",\r\n  \"limit\": 100,\r\n  \"creation_time\": 0\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v2/dlm/invmgr/jobs/get",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v2",
+						"dlm",
+						"invmgr",
+						"jobs",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Credentials",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"data\": [\n  {\n\t\"profile\": \"csm\",\n    \"user_pass\": [\n       {\n          \"user_name\": \"cw-admin\",\n          \"password\": \"cisco123\",\n          \"type\": 12\n                          \n        }\n    ]\n  },\n  {\n\t\"profile\": \"nso1\",\n    \"user_pass\": [\n       {\n          \"user_name\": \"admin\",\n          \"password\": \"admin\",\n          \"type\": \"ROBOT_USERPASS_NETCONF\"\n                          \n        }\n    ]\n  },\n  {\t\n  \"profile\": \"demo\",\n  \"v2_info\": {\n    \"read_community\": \"cisco\",\n    \"write_community\": \"cisco\"\n  },\n  \"user_pass\": [\n    {\n      \"user_name\": \"cisco\",\n      \"password\": \"cisco\",\n      \"type\": \"ROBOT_USERPASS_SSH\"\n    },\n    {\n      \"user_name\": \"cisco\",\n      \"password\": \"cisco\",\n      \"type\": \"ROBOT_USERPASS_TELNET\"\n    },\n    {\n      \"user_name\": \"cisco\",\n      \"password\": \"cisco\",\n      \"type\": \"ROBOT_USERPASS_ADMIN\"\n    },\n    { \n       \"user_name\":\"cisco\",\n       \"password\":\"cisco\",\n       \"type\":\"ROBOT_USERPASS_NETCONF\"\n    }\n  ]\n  }\n  ],\n\"user\": \"admin\"\n}\n"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v2/dlm/invmgr/credentials/post",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v2",
+						"dlm",
+						"invmgr",
+						"credentials",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Provider",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"providers\": [\r\n    {\r\n    \"name\": \"nso201\",\r\n    \"provider_device_key\": \"ROBOT_PROVDEVKEY_NODE_IP\",\r\n    \"profile\": \"nso1\",\r\n    \"family\": \"ROBOT_PROVIDER_NSO\",\r\n    \"connectivity_info\": [\r\n    \t{\r\n        \"type\": \"ROBOT_MSVC_TRANS_NETCONF\",\r\n        \"ipaddrs\": [\r\n        \t{\r\n            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n            \"inet_addr\": \"198.18.134.28\"\r\n            }\r\n        ],\r\n        \"port\": 2022\r\n        }\r\n    ],\r\n\t\"supported_models\": [\r\n\t\t{\r\n\t\t\"model_prefix\": \"Cisco-IOS-XR\",\r\n\t\t\"model_version\": \"6.6.1\"\r\n\t\t}\r\n    ]\r\n},\r\n\r\n{\r\n    \"name\": \"XTC\",\r\n    \"family\": \"ROBOT_PROVIDER_XTC\",\r\n    \"profile\": \"demo\",\r\n    \"connectivity_info\": [\r\n               {\r\n        \"type\": \"ROBOT_MSVC_TRANS_HTTP\",\r\n        \"ipaddrs\": [\r\n               {\r\n            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n            \"inet_addr\": \"4.4.4.4\"\r\n            }\r\n        ],\r\n        \"port\": 8080\r\n        }\r\n    ],\r\n    \"properties\": {\r\n               \"auto-onboard\": \"off\"\r\n        }   \r\n \r\n}\r\n]}\r\n"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v2/dlm/invmgr/provider/post",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v2",
+						"dlm",
+						"invmgr",
+						"provider",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add TAGs",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"tags\": [{\r\n\t\t\"name\": \"Bay Area\",\r\n\t\t\"category\": \"City\",\r\n\t\t\"created_by\": \"Admin\"\r\n\t}]\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v2/dlm/invmgr/tags/post",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v2",
+						"dlm",
+						"invmgr",
+						"tags",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add RouterFremont",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"data\": [\r\n\t{\r\n        \"inv_key_type\": \"NODE_IP\",\r\n        \"node_ip\": {\r\n            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n            \"inet_addr\": {{R1_ip}},\r\n            \"mask\": {{mask}}\r\n        },\r\n        \"host_name\": {{R1_name}},\r\n        \"profile\" :\"demo\",\r\n            \"admin_state\": \"ROBOT_ADMIN_STATE_UP\",\r\n            \"connectivity_info\": [\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_NETCONF\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R1_ip}},\r\n                            \"mask\": {{mask}}\r\n                        }\r\n                    ],\r\n                    \"port\": 830,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_SNMP\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R1_ip}},\r\n                            \"mask\": {{mask}}\r\n                        }\r\n                    ],\r\n                    \"port\": 161,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_TELNET\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R1_ip}},\r\n                            \"mask\": {{mask}}\r\n                        }\r\n                    ],\r\n                    \"port\": 23,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_SSH\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R1_ip}},\r\n                            \"mask\": {{mask}}\r\n                        }\r\n                    ],\r\n                    \"port\": 22,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                }\r\n            ],\r\n            \"product_info\": {\r\n                \"software_type\": \"IOS XR\",\r\n                \"software_version\": \"6.2.1\",\r\n                \"product_type\": \"Cisco XRV9000\",\r\n                \"product_family\": \"Cisco XRv9K\",\r\n                \"product_series\": \"Cisco XRV9000 Series Virtual Routers\",\r\n                \"manufacturer\": \"Cisco Systems\",\r\n                \"capability\": [\"YANG_MDT\", \"SNMP\", \"YANG_CLI\"],\r\n\t\t\t\t\"device_type\": \"NODE_TYPE_ROUTER\"\r\n\r\n            },\r\n\t\t\t\"geo_info\": {\r\n\t\t\t    \"coordinates\": {\r\n\t\t\t    \t\"longitude\" : -121.9886,\r\n\t\t\t    \t\"latitude\" : 37.548271,\r\n\t\t\t    \t\"altitude\" : 0\r\n\t\t\t    },\r\n\t\t\t    \"range_incr\": {}\r\n\t\t\t  },\r\n\t\t\t  \"routing_info\": {\r\n\t\t\t\t\"mgmt_intf_ip\": [\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"inet_af\": 1,\r\n\t\t\t\t\t\t\"inet_addr\": {{R1_ip}},\r\n                        \"mask\": {{mask}}\r\n\t\t\t\t\t}\r\n\t\t\t\t],\r\n\t\t\t\t\"mgmt_vrf\": \"default\"\r\n\t\t\t  },\r\n\t            \"provider\":{\r\n\t            \t\"ROBOT_PROVIDER_CFG_LOCAL\":{\r\n\t            \t\t\"provider_name\":\"nso201\",\r\n\t            \t\t\"provider_node_id\":{{R1_name}}\r\n\t            \t}\r\n\t        \t},\r\n        \t\"reachability_check\": \"REACH_CHECK_ENABLE\"\r\n    }\r\n  ],\r\n  \"user\": \"admin\"\r\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v2/dlm/invmgr/nodes/post",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v2",
+						"dlm",
+						"invmgr",
+						"nodes",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add RouterMilpitas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"data\": [\r\n\t{\r\n        \"inv_key_type\": \"NODE_IP\",\r\n        \"node_ip\": {\r\n            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n            \"inet_addr\": {{R3_ip}},\r\n            \"mask\": {{mask}}\r\n        },\r\n        \"host_name\": {{R3_name}},\r\n        \"profile\" :\"demo\",\r\n            \"admin_state\": \"ROBOT_ADMIN_STATE_UP\",\r\n            \"connectivity_info\": [\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_NETCONF\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R3_ip}},\r\n                            \"mask\": {{mask}}\r\n                        }\r\n                    ],\r\n                    \"port\": 830,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_SNMP\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R3_ip}},\r\n                            \"mask\": {{mask}}\r\n                        }\r\n                    ],\r\n                    \"port\": 161,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_TELNET\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R3_ip}},\r\n                        \t\"mask\": {{mask}}\r\n                        }\r\n                    ],\r\n                    \"port\": 23,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_SSH\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R3_ip}},\r\n                        \t\"mask\": {{mask}}\r\n                        }\r\n                    ],\r\n                    \"port\": 22,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                } \r\n            ],\r\n            \"product_info\": {\r\n                \"software_type\": \"IOS XR\",\r\n                \"software_version\": \"6.2.1\",\r\n                \"product_type\": \"Cisco XRV9000\",\r\n                \"product_family\": \"Cisco XRv9K\",\r\n                \"product_series\": \"Cisco XRV9000 Series Virtual Routers\",\r\n                \"manufacturer\": \"Cisco Systems\",\r\n                \"capability\": [\"YANG_MDT\", \"SNMP\", \"YANG_CLI\"],\r\n\t\t\t\t\"device_type\": \"NODE_TYPE_ROUTER\"\r\n\r\n            },\r\n\t\t\t  \"geo_info\": {\r\n\t\t\t    \"coordinates\": {\r\n\t\t\t    \t\"longitude\": -121.899574,\r\n                \t\"latitude\": 37.432335,\r\n\t\t\t    \t\"altitude\" : 0\r\n\t\t\t    },\r\n\t\t\t    \"range_incr\": {}\r\n\t\t\t  },\r\n\t\t\t  \"routing_info\": {\r\n\t\t\t\t\"mgmt_intf_ip\": [\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"inet_af\": 1,\r\n\t\t\t\t\t\t\"inet_addr\": {{R3_ip}},\r\n                        \"mask\": {{mask}}\r\n\t\t\t\t\t}\r\n\t\t\t\t],\r\n\t\t\t\t\"mgmt_vrf\": \"default\"\r\n\t\t\t  },\r\n\t            \"provider\":{\r\n\t            \t\"ROBOT_PROVIDER_CFG_LOCAL\":{\r\n\t            \t\t\"provider_name\":\"nso201\",\r\n\t            \t\t\"provider_node_id\":{{R3_name}},\r\n                        \"mask\": {{mask}}\r\n\t            \t}\r\n\t        \t},\r\n        \t\"reachability_check\": \"REACH_CHECK_ENABLE\"\r\n    }\r\n  ],\r\n  \"user\": \"admin\"\r\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v2/dlm/invmgr/nodes/post",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v2",
+						"dlm",
+						"invmgr",
+						"nodes",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add RouterSFO",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"data\": [\r\n\t{\r\n        \"inv_key_type\": \"NODE_IP\",\r\n        \"node_ip\": {\r\n            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n            \"inet_addr\": {{R2_ip}},\r\n            \"mask\": {{mask}}\r\n        },\r\n        \"host_name\": {{R2_name}},\r\n        \"profile\" :\"demo\",\r\n            \"admin_state\": \"ROBOT_ADMIN_STATE_UP\",\r\n            \"connectivity_info\": [\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_NETCONF\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R2_ip}},\r\n            \t\t\t\t\"mask\": {{mask}}\r\n                        }\r\n                    ],\r\n                    \"port\": 830,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_SNMP\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R2_ip}},\r\n            \t\t\t\t\"mask\": {{mask}}\r\n                        }\r\n                    ],\r\n                    \"port\": 161,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_TELNET\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R2_ip}},\r\n            \t\t\t\t\"mask\": {{mask}}\r\n                        }\r\n                    ],\r\n                    \"port\": 23,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_SSH\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R2_ip}},\r\n            \t\t\t\t\"mask\": {{mask}}\r\n                        }\r\n                    ],\r\n                    \"port\": 22,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                }\r\n            ],\r\n            \"product_info\": {\r\n                \"software_type\": \"IOS XR\",\r\n                \"software_version\": \"6.2.1\",\r\n                \"product_type\": \"Cisco XRV9000\",\r\n                \"product_family\": \"Cisco XRv9K\",\r\n                \"product_series\": \"Cisco XRV9000 Series Virtual Routers\",\r\n                \"manufacturer\": \"Cisco Systems\",\r\n                \"capability\": [\"YANG_MDT\", \"SNMP\", \"YANG_CLI\"],\r\n\t\t\t\t\"device_type\": \"NODE_TYPE_ROUTER\"\r\n\r\n            },\r\n\t\t\t  \"geo_info\": {\r\n\t\t\t    \"coordinates\": {\r\n\t\t\t    \t\"longitude\": -122.431297,\r\n                \t\"latitude\": 37.6,\r\n\t\t\t    \t\"altitude\" : 0\r\n\t\t\t    },\r\n\t\t\t    \"range_incr\": {}\r\n\t\t\t  },\r\n\t\t\t  \"routing_info\": {\r\n\t\t\t\t\"mgmt_intf_ip\": [\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"inet_af\": 1,\r\n\t\t\t\t\t\t\"inet_addr\": {{R2_ip}},\r\n            \t\t\t\"mask\": {{mask}}\r\n\t\t\t\t\t}\r\n\t\t\t\t],\r\n\t\t\t\t\"mgmt_vrf\": \"default\"\r\n\t\t\t  },\r\n\t            \"provider\":{\r\n\t            \t\"ROBOT_PROVIDER_CFG_LOCAL\":{\r\n\t            \t\t\"provider_name\":\"nso201\",\r\n\t            \t\t\"provider_node_id\":{{R2_name}}\r\n\t            \t}\r\n\t        \t},\r\n        \t\"reachability_check\": \"REACH_CHECK_ENABLE\"\r\n    }\r\n  ],\r\n  \"user\": \"admin\"\r\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v2/dlm/invmgr/nodes/post",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v2",
+						"dlm",
+						"invmgr",
+						"nodes",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Nodes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"limit\": 100,\r\n\t\"next_from\": \"0\",\r\n\t\"filter\": {\r\n\t}\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v1/dlm/invmgr/nodes/get",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v1",
+						"dlm",
+						"invmgr",
+						"nodes",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Credentials",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"limit\": 100,\r\n\t\"next_from\": \"0\",\r\n\t\"filter\": {\r\n\t}\r\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v1/dlm/invmgr/credentials/get",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v1",
+						"dlm",
+						"invmgr",
+						"credentials",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Providers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"limit\": 100,\r\n\t\"filter\": {\r\n\t}\r\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v1/dlm/invmgr/providers/get",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v1",
+						"dlm",
+						"invmgr",
+						"providers",
+						"get"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "78526acc-9d14-464c-9541-a8174e5bf607",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d752532f-0abd-4b20-b668-996b5652a318",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

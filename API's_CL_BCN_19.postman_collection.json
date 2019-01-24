@@ -1,0 +1,1853 @@
+{
+	"info": {
+		"_postman_id": "39104364-f198-4740-86bb-555e9e7996c6",
+		"name": "API's_CL_BCN_19",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Ticket",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{any_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{any_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/SSO/v1/tickets?username=admin&password=admin",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"SSO",
+						"v1",
+						"tickets"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "admin"
+						},
+						{
+							"key": "password",
+							"value": "admin"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{any_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{any_user}}",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"type": "any"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "https://198.18.134.219:30603/app-dashboard",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/SSO/v1/tickets/{{ticket}}",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"SSO",
+						"v1",
+						"tickets",
+						"{{ticket}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Job",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"job_id\": \"\",\r\n  \"limit\": 100,\r\n  \"creation_time\": 0\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v2/dlm/invmgr/jobs/get",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v2",
+						"dlm",
+						"invmgr",
+						"jobs",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Nodes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"limit\": 100,\r\n\t\"next_from\": \"0\",\r\n\t\"filter\": {\r\n\t}\r\n}\r\n"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v1/dlm/invmgr/nodes/get",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v1",
+						"dlm",
+						"invmgr",
+						"nodes",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Credentials",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"limit\": 100,\r\n\t\"next_from\": \"0\",\r\n\t\"filter\": {\r\n\t}\r\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v1/dlm/invmgr/credentials/get",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v1",
+						"dlm",
+						"invmgr",
+						"credentials",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Providers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"limit\": 100,\r\n\t\"filter\": {\r\n\t}\r\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot/api/v1/dlm/invmgr/providers/get",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot",
+						"api",
+						"v1",
+						"dlm",
+						"invmgr",
+						"providers",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - CEF Drops",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_cef_drops\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - CPU Threshold",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_cpu_threshold\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET- CPU-Utilization",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_cpu_utilization\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Interface Rate Counters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_interface_rate_counters\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Interface Bandwidth Monitor",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_interface_bandwidth_utilization\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Interface Packet Error Counters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_interface_error_counters\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Interface packet Counters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_interface_packet_counters\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Interface Flap Detection",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_interface_flap_detector\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Line State",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_interface_state_info\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Ethernet-port error-counters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_ethernet_port_error_counters\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Ethernet-port-packet-size-distribution",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_ethernet_port_packet_size_distribution\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Ethernet-port packet stats",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_ethernet_port_stats\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Interface Counters by Protocol",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_intf_stat_protocol\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Layer1 Optical Alarm",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_layer1_optics_alarms\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Layer1 Optical Errors",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_layer1_optics_errors\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Layer1 Optical FEC Errors",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_layer1_optics_fecerrors\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Layer1 Optical Power",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_layer1_optics_power\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Layer1 Optical Temperature",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_layer1_optics_temperature\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Layer1 Optical Voltage",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_layer1_optics_voltage\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Memory Utilization",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_memory_utilization\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET -  IPv6 RIB BGP Route Count",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_ipv6_rib_bgp\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET -  IPv6 RIB IS-IS Route Count",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_ipv6_rib_isis\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET -  IPv6 RIB OSPF Route Count",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_ipv6_rib_ospf\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - ISIS Neighbor Summary",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_isis_neighbor_summary\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - SNMP Interface Packet Error Counters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_snmp_interface_error_counters\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - SNMP Interface Packet Counters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_snmp_interface_packet_counters\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - SNMP Interface Packet Rate Counters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_snmp_interface_rate_counters\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - SNMP Traffic Blackhole",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_snmp_traffic_blackhole\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - Traffic Blackhole",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_traffic_blackhole\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - RIB BGP Route Count",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_rib_bgp\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - RIB OSPF Route Count",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_rib_ospf\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - RIB Connected Route Count",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_rib_connected\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - RIB IS-IS Route Count",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_rib_isis\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - RIB Local Route Count",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_rib_local\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - RIB Static Route Count",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_rib_static\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - RIBv6 Connected Route Count",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_ribv6_connected\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - RIBv6 Local Route Count",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_ribv6_local\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - RIBv6 Static Route Count",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_ribv6_static\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - RIBv6 Subscriber Route Count",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"kpis\": [\n    \"pulse_routing_ribv6_subscriber\"\n  ]\n}"
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/v2/kpimgmt/query",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"v2",
+						"kpimgmt",
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of Available KPI's",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{crosswork_ip}}:6644/robot-pulse/robot/pulse/kpis",
+					"protocol": "https",
+					"host": [
+						"{{crosswork_ip}}"
+					],
+					"port": "6644",
+					"path": [
+						"robot-pulse",
+						"robot",
+						"pulse",
+						"kpis"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
