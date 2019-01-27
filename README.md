@@ -16,10 +16,9 @@ The NCA and HI Postman collections will need:
 If you don't have Postman already installed, you can download it from [here](https://getpostman.com). Once you install it, follow the steps below to import the collections and environment:
 
 
-1. Click on `Import`, browse to the location where you cloned this repo and add the three files:
+1. Click on `Import`, browse to the location where you cloned this repo and add the two files:
     1. `pub-ip-env.json`
-    2. `pub-ip-coll.json`
-    3. `API's_CL_BCN_19.postman_collection.json`
+    2. `API's_CL_BCN_19.postman_collection.json`
 2. Make sure you select the `Crosswork 2.0e PubIP` environment
 3. Expand the collections
 4. Review our DevNet page [Cisco Crosswork DevNet page](https://developer.cisco.com/)
