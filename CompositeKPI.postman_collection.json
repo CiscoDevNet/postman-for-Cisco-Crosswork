@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "60a58ff7-7749-4fa0-a53b-40d0ecac8eed",
+		"name": "CompositeKPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Ticket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1949edc0-db16-4a68-849d-1b7b9576cd5e",
+						"exec": [
+							"pm.globals.set(\"TGT\", pm.response.text());",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzRnJvbU5ld0xvZ2luIjoidHJ1ZSIsInBvbGljeV9pZCI6ImFkbWluIiwiYXV0aGVudGljYXRpb25EYXRlIjoiMjAxOC0xMS0yMFQwMToxODozMC45NDZaW1VUQ10iLCJzdWNjZXNzZnVsQXV0aGVudGljYXRpb25IYW5kbGVycyI6IlF1ZXJ5RGF0YWJhc2VBdXRoZW50aWNhdGlvbkhhbmRsZXIiLCJpc3MiOiJodHRwczpcL1wvbG9jYWxob3N0OjU0ODlcL1NTTyIsImxhc3RfbmFtZSI6InNtaXRoIiwiY3JlZGVudGlhbFR5cGUiOiJVc2VybmFtZVBhc3N3b3JkQ3JlZGVudGlhbCIsImF1ZCI6Imh0dHBzOlwvXC8xNzIuMjAuODAuNTA6MzA2MDNcLyNcL2FwcC1kYXNoYm9hcmQiLCJhdXRoZW50aWNhdGlvbk1ldGhvZCI6IlF1ZXJ5RGF0YWJhc2VBdXRoZW50aWNhdGlvbkhhbmRsZXIiLCJsb25nVGVybUF1dGhlbnRpY2F0aW9uUmVxdWVzdFRva2VuVXNlZCI6ImZhbHNlIiwiY2hhbmdlX3B3ZCI6ImZhbHNlIiwiZXhwIjoxNTQyNzA1NTEwLCJpYXQiOjE1NDI2NzY3MTAsImZpcnN0X25hbWUiOiJqb2huIiwianRpIjoiU1QtNTItVFRwSmtwVWJhRmg4a3FnN3FtQnlqcUJpTm1fZnRXR1hxODRDdXlTaW1VRndiRDBKVUFXV0Jic3k4VEJjTDVKcEJrMVNmVmNqMTc5QTF0em9LeWlHN0hOMVVtcHg3dVdCZlRjT0RRcjhlS2NHQ3kxdDZTNFdqZnplM2plM0RQMThXLXRJZ3ZieDRfZG5qeWhhNjhNRW5WLW1Kd2lPcjZWby1jYXMtNzk3NDVjODY4NS01bTRycCJ9.zIKiFWNRqN0m6Kt310cm40TN6ykh9VWtHtQYQ4J2hsPPVOTzLchpAigjuxek5U2Iba1EfdjCLdy4EMNT8R7nyw",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"url": {
+					"raw": "https://{{hostname}}:{{port}}/crosswork/sso/v1/tickets?username=admin&password=admin1",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"crosswork",
+						"sso",
+						"v1",
+						"tickets"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "admin"
+						},
+						{
+							"key": "password",
+							"value": "admin1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get JWT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7948146f-185b-41b5-a5d0-5c73dcb6c9d3",
+						"exec": [
+							"pm.globals.set(\"JWT\", pm.response.text());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzRnJvbU5ld0xvZ2luIjoidHJ1ZSIsInBvbGljeV9pZCI6ImFkbWluIiwiYXV0aGVudGljYXRpb25EYXRlIjoiMjAxOC0xMS0yMFQwMToxODozMC45NDZaW1VUQ10iLCJzdWNjZXNzZnVsQXV0aGVudGljYXRpb25IYW5kbGVycyI6IlF1ZXJ5RGF0YWJhc2VBdXRoZW50aWNhdGlvbkhhbmRsZXIiLCJpc3MiOiJodHRwczpcL1wvbG9jYWxob3N0OjU0ODlcL1NTTyIsImxhc3RfbmFtZSI6InNtaXRoIiwiY3JlZGVudGlhbFR5cGUiOiJVc2VybmFtZVBhc3N3b3JkQ3JlZGVudGlhbCIsImF1ZCI6Imh0dHBzOlwvXC8xNzIuMjAuODAuNTA6MzA2MDNcLyNcL2FwcC1kYXNoYm9hcmQiLCJhdXRoZW50aWNhdGlvbk1ldGhvZCI6IlF1ZXJ5RGF0YWJhc2VBdXRoZW50aWNhdGlvbkhhbmRsZXIiLCJsb25nVGVybUF1dGhlbnRpY2F0aW9uUmVxdWVzdFRva2VuVXNlZCI6ImZhbHNlIiwiY2hhbmdlX3B3ZCI6ImZhbHNlIiwiZXhwIjoxNTQyNzA1NTEwLCJpYXQiOjE1NDI2NzY3MTAsImZpcnN0X25hbWUiOiJqb2huIiwianRpIjoiU1QtNTItVFRwSmtwVWJhRmg4a3FnN3FtQnlqcUJpTm1fZnRXR1hxODRDdXlTaW1VRndiRDBKVUFXV0Jic3k4VEJjTDVKcEJrMVNmVmNqMTc5QTF0em9LeWlHN0hOMVVtcHg3dVdCZlRjT0RRcjhlS2NHQ3kxdDZTNFdqZnplM2plM0RQMThXLXRJZ3ZieDRfZG5qeWhhNjhNRW5WLW1Kd2lPcjZWby1jYXMtNzk3NDVjODY4NS01bTRycCJ9.zIKiFWNRqN0m6Kt310cm40TN6ykh9VWtHtQYQ4J2hsPPVOTzLchpAigjuxek5U2Iba1EfdjCLdy4EMNT8R7nyw",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "https://172.20.80.50:30603/app-dashboard",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://{{hostname}}:{{port}}/crosswork/sso/v1/tickets/{{TGT}}",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"crosswork",
+						"sso",
+						"v1",
+						"tickets",
+						"{{TGT}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get CompositeKPIs",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{JWT}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{hostname}}:{{port}}/crosswork/hi/v1/kpi/composites",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"crosswork",
+						"hi",
+						"v1",
+						"kpi",
+						"composites"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get P CompositeKPI",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{JWT}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{hostname}}:{{port}}/crosswork/hi/v1/kpi/composites/p_composite_kpi",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"crosswork",
+						"hi",
+						"v1",
+						"kpi",
+						"composites",
+						"p_composite_kpi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create P CompositeKPI",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"composite_id\": \"p_composite_kpi\",\n  \"name\": \"Displayed name of composite kpi\",\n  \"summary\": \"Summary of composite kpi\",\n  \"details\": \"Detailed description of composite kpi\",\n  \"alert_gate\": {\n    \"operation\": \"and\",\n    \"alert_inputs\": [{\n      \"alert_gate\": {\n        \"operation\": \"or\",\n        \"alert_inputs\": [{\n          \"alert_primitive\": {\n            \"kpi_id\": \"pulse_cef_drops\",\n            \"levels\": [{\n              \"level\": \"CRITICAL\"\n            }]\n          }\n        },\n          {\n            \"alert_primitive\": {\n              \"kpi_id\": \"pulse_traffic_blackhole\",\n              \"levels\": [{\n                \"level\": \"CRITICAL\"\n              }]\n            }\n          }\n        ]\n\n      }\n    },\n      {\n        \"alert_primitive\": {\n          \"kpi_id\": \"pulse_ipsla_udp_echo_rtt\",\n          \"levels\": [{\n            \"level\": \"CRITICAL\"\n          }]\n        }\n      }\n    ]\n  }\n}"
+				},
+				"url": {
+					"raw": "https://{{hostname}}:{{port}}/crosswork/hi/v1/kpi/composites",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"crosswork",
+						"hi",
+						"v1",
+						"kpi",
+						"composites"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create PE CompositeKPI",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"composite_id\": \"pe_composite_kpi\",\n  \"name\": \"Displayed name of composite kpi\",\n  \"summary\": \"Summary of composite kpi\",\n  \"details\": \"Detailed description of composite kpi\",\n  \"alert_gate\": {\n    \"operation\": \"and\",\n    \"alert_inputs\": [{\n      \"alert_gate\": {\n        \"operation\": \"or\",\n        \"alert_inputs\": [{\n          \"alert_primitive\": {\n            \"kpi_id\": \"pulse_cef_drops\",\n            \"levels\": [{\n              \"level\": \"CRITICAL\"\n            }]\n          }\n        },\n          {\n            \"alert_primitive\": {\n              \"kpi_id\": \"pulse_traffic_blackhole\",\n              \"levels\": [{\n                \"level\": \"CRITICAL\"\n              }]\n            }\n          }\n        ]\n\n      }\n    },\n      {\n        \"alert_primitive\": {\n          \"kpi_id\": \"pulse_ipsla_udp_echo_rtt\",\n          \"levels\": [{\n            \"level\": \"CRITICAL\"\n          }]\n        }\n      }\n    ]\n  }\n}"
+				},
+				"url": {
+					"raw": "https://{{hostname}}:{{port}}/crosswork/hi/v1/kpi/composites",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"crosswork",
+						"hi",
+						"v1",
+						"kpi",
+						"composites"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete P CompositeKPI",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{JWT}}"
+					}
+				],
+				"url": {
+					"raw": "https://{{hostname}}:{{port}}/crosswork/hi/v1/kpi/composites/p_composite_kpi",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"crosswork",
+						"hi",
+						"v1",
+						"kpi",
+						"composites",
+						"p_composite_kpi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CompositeKPIDeviceAlert",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"device_id\": \"R3\",\n  \"composite_id\": \"p_composite_kpi\",\n  \"time_ago\": \"0m\",\n  \"time_interval\": \"1h\"\n}\n"
+				},
+				"url": {
+					"raw": "https://{{hostname}}:{{port}}/crosswork/hi/v1/alerts/kpi/composite/devices",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"crosswork",
+						"hi",
+						"v1",
+						"alerts",
+						"kpi",
+						"composite",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "L3VPN Failure",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{JWT}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"net_logic_id\": \"l3vpn_health_correlation\",\n  \"name\": \"Displayed name of network health logic\",\n  \"summary\": \"Summary of network health logic\",\n  \"details\": \"Detailed description of network health logic\",\n  \"net_health_gate\": {\n    \"operation\": \"or\",\n    \"net_health_inputs\": [{\n      \"net_health_gate\": {\n        \"operation\": \"or\",\n        \"net_health_inputs\": [{\n          \"device_health\": {\n            \"device_id\": \"R1\",\n            \"composite_id\": \"pe_composite_kpi\"\n          }\n        },\n          {\n            \"device_health\": {\n              \"device_id\": \"R4\",\n              \"composite_id\": \"pe_composite_kpi\"\n            }\n          }\n        ]\n      }\n    },\n      {\n        \"device_health\": {\n          \"device_id\": \"R3\",\n          \"composite_id\": \"p_composite_kpi\"\n        }\n      }\n    ]\n  }\n}"
+				},
+				"url": {
+					"raw": "https://{{hostname}}:{{port}}/crosswork/hi/v1/alerts/net/health",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"crosswork",
+						"hi",
+						"v1",
+						"alerts",
+						"net",
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

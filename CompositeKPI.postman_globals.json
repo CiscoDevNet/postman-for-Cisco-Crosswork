@@ -1,0 +1,29 @@
+{
+	"id": "540320d3-c304-4bd8-8e61-b096eea6e66d",
+	"values": [
+		{
+			"key": "hostname",
+			"value": "<IP address>",
+			"enabled": true
+		},
+		{
+			"key": "port",
+			"value": "30603",
+			"enabled": true
+		},
+		{
+			"key": "TGT",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "JWT",
+			"value": "",
+			"enabled": true
+		}
+	],
+	"name": "My Workspace Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2019-05-31T22:06:58.595Z",
+	"_postman_exported_using": "Postman/7.1.1"
+}
