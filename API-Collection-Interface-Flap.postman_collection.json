@@ -1,0 +1,2495 @@
+{
+	"info": {
+		"_postman_id": "f5ca52ee-c952-4a19-b7b2-90632ac6de5f",
+		"name": "API-Collection-Interface-Flap",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "On-Boarding",
+			"item": [
+				{
+					"name": "Get Ticket",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d957b29c-877a-4c39-8b8e-d14bb55b7af0",
+								"exec": [
+									"pm.environment.set(\"ticket\", responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Cache-Control",
+								"value": "no-cache"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/sso/v1/tickets?username=admin&password=admin1",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"sso",
+								"v1",
+								"tickets"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "admin"
+								},
+								{
+									"key": "password",
+									"value": "admin1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "86023938-9008-4d17-9347-f4edec26ce96",
+								"exec": [
+									"pm.environment.set(\"token\", responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Cache-Control",
+								"value": "no-cache"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "service",
+									"value": "https://198.18.134.219:30603/app-dashboard",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/sso/v1/tickets/{{ticket}}",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"sso",
+								"v1",
+								"tickets",
+								"{{ticket}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cache-Control",
+								"value": "no-cache"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"job_id\": \"\",\r\n  \"limit\": 100,\r\n  \"creation_time\": 0\r\n}\r\n"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/robot/api/v2/dlm/invmgr/jobs/get",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"robot",
+								"api",
+								"v2",
+								"dlm",
+								"invmgr",
+								"jobs",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Credentials _Alert_end",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"data\": [\n  {\n\t\"profile\": \"csm\",\n    \"user_pass\": [\n       {\n          \"user_name\": \"cw-admin\",\n          \"password\": \"cisco123\",\n          \"type\": \"ROBOT_USERPASS_SSH\"\n                          \n        }\n    ]\n  },\n  {\n      \"profile\": \"ubuntu\",\n      \"user_pass\": [\n        {\n          \"user_name\": \"cw-admin\",\n          \"password\": \"C1sco12345\",\n          \"type\": \"ROBOT_USERPASS_HTTP\"\n        }\n        ]\n  },\n  {\n      \"profile\": \"ubu-89\",\n      \"user_pass\": [\n        {\n          \"user_name\": \"cw-admin\",\n          \"password\": \"C1sco12345\",\n          \"type\": \"ROBOT_USERPASS_HTTP\"\n        }\n        ]\n  },\n  {\n    \"profile\": \"external\",\n    \"user_pass\": [\n        {\n            \"user_name\": \"cw-admin\",\n            \"password\": \"cisco123\",\n            \"type\": \"ROBOT_USERPASS_ADMIN\"\n        }\n    ]\n  },\n  {\n\t\"profile\": \"nso1\",\n    \"user_pass\": [\n       {\n          \"user_name\": \"admin\",\n          \"password\": \"admin1\",\n          \"type\": \"ROBOT_USERPASS_NETCONF\"\n                          \n        }\n    ]\n  },\n  {\t\n  \"profile\": \"demo\",\n  \"v2_info\": {\n    \"read_community\": \"cisco\",\n    \"write_community\": \"cisco\"\n  },\n  \"user_pass\": [\n    {\n      \"user_name\": \"cisco\",\n      \"password\": \"cisco\",\n      \"type\": \"ROBOT_USERPASS_SSH\"\n    },\n    {\n      \"user_name\": \"cisco\",\n      \"password\": \"cisco\",\n      \"type\": \"ROBOT_USERPASS_TELNET\"\n    },\n    {\n      \"user_name\": \"cisco\",\n      \"password\": \"cisco\",\n      \"type\": \"ROBOT_USERPASS_ADMIN\"\n    },\n    { \n       \"user_name\":\"cisco\",\n       \"password\":\"cisco\",\n       \"type\":\"ROBOT_USERPASS_NETCONF\"\n    }\n  ]\n  }\n  ],\n\"user\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/credentials",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"credentials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a Provider",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"providers\": [\n    {\n    \"name\": \"nso201\",\n    \"provider_device_key\": \"ROBOT_PROVDEVKEY_NODE_IP\",\n    \"profile\": \"nso1\",\n    \"family\": \"ROBOT_PROVIDER_NSO\",\n    \"connectivity_info\": [\n    \t{\n        \"type\": \"ROBOT_MSVC_TRANS_NETCONF\",\n        \"ipaddrs\": [\n        \t{\n            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\n            \"inet_addr\": \"192.168.123.111\"\n            }\n        ],\n        \"port\": 2022\n        }\n    ],\n\t\"supported_models\": [\n\t\t{\n\t\t\"model_prefix\": \"Cisco-IOS-XR\",\n\t\t\"model_version\": \"6.6.1\"\n\t\t}\n    ]\n},\n{\n    \"name\": \"XTC\",\n    \"family\": \"ROBOT_PROVIDER_XTC\",\n    \"profile\": \"demo\",\n    \"connectivity_info\": [\n               {\n        \"type\": \"ROBOT_MSVC_TRANS_HTTP\",\n        \"ipaddrs\": [\n               {\n            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\n            \"inet_addr\": \"4.4.4.4\"\n            }\n        ],\n        \"port\": 8080\n        }\n    ],\n    \"properties\": {\n               \"auto-onboard\": \"off\"\n        }   \n \n},\n        {\n            \"name\": \"syslog\",\n            \"family\": \"ROBOT_PROVIDER_SYSLOG_STORAGE\",\n            \"profile\": \"external\",\n            \"connectivity_info\": [\n                {\n                    \"type\": \"ROBOT_MSVC_TRANS_SSH\",\n                    \"ipaddrs\": [\n                        {\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\n                            \"inet_addr\": \"192.168.123.101\"\n                        }\n                    ],\n                    \"port\": 22\n                }\n            ],\n            \"properties\": {\n                \"MntPath\": \"/home/cw-admin/cw-logs\"\n            }\n\n        }\n]}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/providers",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"providers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Provider - Alert End[102]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"providers\": [{\n\t\t\"uuid\": \"\",\n\t\t\"name\": \"Alert\",\n\t\t\"profile\": \"ubuntu\",\n\t\t\"provider_device_key\": 0,\n\t\t\"connectivity_info\": [{\n\t\t\t\"type\": 3,\n\t\t\t\"ipaddrs\": [{\n\t\t\t\t\"inet_af\": 1,\n\t\t\t\t\"inet_addr\": \"172.23.193.102\"\n\t\t\t}],\n\t\t\t\"port\": 24001,\n\t\t\t\"timeout\": \"60\"\n\t\t}],\n\t\t\"supported_models\": [{\n\t\t\t\"model_prefix\": \"\",\n\t\t\t\"model_version\": \"\"\n\t\t}],\n\t\t\"family\": 7,\n\t\t\"properties\": {\n\t\t\t\"alertEndpointUrl\": \"http://172.23.193.102:24001/\"\n\t\t}\n\t}]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/providers",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"providers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add RouterR4",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"data\": [\r\n\t{\r\n        \"inv_key_type\": \"NODE_IP\",\r\n        \"node_ip\": {\r\n            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n            \"inet_addr\": {{R4_ip}},\r\n            \"mask\": \"24\"\r\n        },\r\n        \"host_name\": {{R4_name}},\r\n        \"profile\" :\"demo\",\r\n            \"admin_state\": \"ROBOT_ADMIN_STATE_UP\",\r\n            \"connectivity_info\": [\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_SSH\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R4_ip}},\r\n                            \"mask\": \"24\"\r\n                        }\r\n                    ],\r\n                    \"port\": 22,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_SNMP\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R4_ip}},\r\n                            \"mask\": \"24\"\r\n                        }\r\n                    ],\r\n                    \"port\": 161,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_TELNET\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R4_ip}},\r\n                            \"mask\": \"24\"\r\n                        }\r\n                    ],\r\n                    \"port\": 23,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_NETCONF\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R4_ip}},\r\n                            \"mask\": \"24\"\r\n                        }\r\n                    ],\r\n                    \"port\": 830,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                }\r\n            ],\r\n            \"product_info\": {\r\n                \"software_type\": \"IOS XR\",\r\n                \"software_version\": \"6.5.1\",\r\n                \"product_type\": \"Cisco XRV9000\",\r\n                \"product_family\": \"Cisco XRv9K\",\r\n                \"product_series\": \"Cisco XRV9000 Series Virtual Routers\",\r\n                \"manufacturer\": \"Cisco Systems\",\r\n                \"capability\": [\"YANG_MDT\", \"SNMP\", \"YANG_CLI\"],\r\n\t\t\t\t\"device_type\": \"NODE_TYPE_ROUTER\"\r\n\r\n            },\r\n\t\t\t\"geo_info\": {\r\n\t\t\t    \"coordinates\": {\r\n\t\t\t    \t\"longitude\": -122.379,\r\n                \t\"latitude\": 37.6213,\r\n\t\t\t    \t\"altitude\" : 0\r\n\t\t\t    },\r\n\t\t\t    \"range_incr\": {}\r\n\t\t\t  },\r\n\t\t\t  \"routing_info\": {\r\n\t\t\t\t\"mgmt_intf_ip\": [\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"inet_af\": 1,\r\n\t\t\t\t\t\t\"inet_addr\": {{R4_ip}},\r\n\t\t\t\t\t\t\"mask\": \"24\"\r\n\t\t\t\t\t}\r\n\t\t\t\t],\r\n\t\t\t\t\"mgmt_vrf\": \"default\"\r\n\t\t\t  },\r\n\t            \"provider\":{\r\n\t            \t\"ROBOT_PROVIDER_CFG_LOCAL\":{\r\n\t            \t\t\"provider_name\":\"nso201\",\r\n\t            \t\t\"provider_node_id\":{{R4_name}}\r\n\t            \t}\r\n\t        \t},\r\n        \t\"reachability_check\": \"REACH_CHECK_ENABLE\"\r\n    }\r\n  ],\r\n  \"user\": \"admin\"\r\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/nodes",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add RouterR5",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"data\": [\r\n\t{\r\n        \"inv_key_type\": \"NODE_IP\",\r\n        \"node_ip\": {\r\n            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n            \"inet_addr\": {{R5_ip}},\r\n            \"mask\": \"24\"\r\n        },\r\n        \"host_name\": {{R5_name}},\r\n        \"profile\" :\"demo\",\r\n            \"admin_state\": \"ROBOT_ADMIN_STATE_UP\",\r\n            \"connectivity_info\": [\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_SSH\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R5_ip}},\r\n                            \"mask\": \"24\"\r\n                        }\r\n                    ],\r\n                    \"port\": 22,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_SNMP\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R5_ip}},\r\n                            \"mask\": \"24\"\r\n                        }\r\n                    ],\r\n                    \"port\": 161,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_TELNET\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R5_ip}},\r\n                            \"mask\": \"24\"\r\n                        }\r\n                    ],\r\n                    \"port\": 23,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                },\r\n                {\r\n                    \"type\": \"ROBOT_MSVC_TRANS_NETCONF\",\r\n                    \"ipaddrs\": [\r\n                        {\r\n                            \"inet_af\": \"ROBOT_INET_ADDR_TYPE_v4\",\r\n                            \"inet_addr\": {{R5_ip}},\r\n                            \"mask\": \"24\"\r\n                        }\r\n                    ],\r\n                    \"port\": 830,\r\n                    \"timeout\": \"10\",\r\n                    \"reachability_state\": \"CONN_STATE_UNREACHABLE\"\r\n                }\r\n            ],\r\n            \"product_info\": {\r\n                \"software_type\": \"IOS XR\",\r\n                \"software_version\": \"6.5.1\",\r\n                \"product_type\": \"Cisco XRV9000\",\r\n                \"product_family\": \"Cisco XRv9K\",\r\n                \"product_series\": \"Cisco XRV9000 Series Virtual Routers\",\r\n                \"manufacturer\": \"Cisco Systems\",\r\n                \"capability\": [\"YANG_MDT\", \"SNMP\", \"YANG_CLI\"],\r\n\t\t\t\t\"device_type\": \"NODE_TYPE_ROUTER\"\r\n\r\n            },\r\n\t\t\t\"geo_info\": {\r\n\t\t\t    \"coordinates\": {\r\n\t\t\t    \t\"longitude\": -74.006,\r\n                \t\"latitude\": 40.7128,\r\n\t\t\t    \t\"altitude\" : 0\r\n\t\t\t    },\r\n\t\t\t    \"range_incr\": {}\r\n\t\t\t  },\r\n\t\t\t  \"routing_info\": {\r\n\t\t\t\t\"mgmt_intf_ip\": [\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"inet_af\": 1,\r\n\t\t\t\t\t\t\"inet_addr\": {{R5_ip}},\r\n\t\t\t\t\t\t\"mask\": \"24\"\r\n\t\t\t\t\t}\r\n\t\t\t\t],\r\n\t\t\t\t\"mgmt_vrf\": \"default\"\r\n\t\t\t  },\r\n\t            \"provider\":{\r\n\t            \t\"ROBOT_PROVIDER_CFG_LOCAL\":{\r\n\t            \t\t\"provider_name\":\"nso201\",\r\n\t            \t\t\"provider_node_id\":{{R5_name}}\r\n\t            \t}\r\n\t        \t},\r\n        \t\"reachability_check\": \"REACH_CHECK_ENABLE\"\r\n    }\r\n  ],\r\n  \"user\": \"admin\"\r\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/nodes",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"nodes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "on-Boarding-checking",
+			"item": [
+				{
+					"name": "GET Nodes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"limit\":100,\"filter\":{}}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/nodes/query",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"nodes",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Specific Node",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"limit\":100,\"filter\":{\n            \n            \"host_name\": \"R1.virl.info\"}}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/nodes/query",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"nodes",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Providers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"limit\":100,\"filter\":{}}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/providers/query",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"providers",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Credentials",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"limit\":100,\"next_from\":\"0\",\"filter\":{}}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/credentials/query",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"credentials",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Provider",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzRnJvbU5ld0xvZ2luIjoidHJ1ZSIsInBvbGljeV9pZCI6ImFkbWluIiwiYXV0aGVudGljYXRpb25EYXRlIjoiMjAxOC0wNC0yNlQxNzo1MTozMC43NzlaW1VUQ10iLCJzdWNjZXNzZnVsQXV0aGVudGljYXRpb25IYW5kbGVycyI6IlF1ZXJ5RGF0YWJhc2VBdXRoZW50aWNhdGlvbkhhbmRsZXIiLCJpc3MiOiJodHRwczpcL1wvbG9jYWxob3N0OjU0ODlcL1NTTyIsImxhc3RfbmFtZSI6InNtaXRoIiwiY3JlZGVudGlhbFR5cGUiOiJVc2VybmFtZVBhc3N3b3JkQ3JlZGVudGlhbCIsImF1ZCI6Imh0dHBzOlwvXC8xNzIuMjMuMjQ3LjEyMzozMDYwM1wvI1wvYXBwLWRhc2hib2FyZCIsImF1dGhlbnRpY2F0aW9uTWV0aG9kIjoiUXVlcnlEYXRhYmFzZUF1dGhlbnRpY2F0aW9uSGFuZGxlciIsImxvbmdUZXJtQXV0aGVudGljYXRpb25SZXF1ZXN0VG9rZW5Vc2VkIjoiZmFsc2UiLCJjaGFuZ2VfcHdkIjoiZmFsc2UiLCJleHAiOjE1MjQ3OTM4OTAsImlhdCI6MTUyNDc2NTA5MCwiZmlyc3RfbmFtZSI6ImpvaG4iLCJqdGkiOiJTVC0xMC1qbjR0SnlqNFpxcDdhWDB6QnJ4TW13dmp0bHVNT1gtYWx3REFIZ3p5ZnBTellkcTlYaEY5Nks5Vmt4VV9ETjZ4UGFSZHdncS1pS3RKbXFMSDdLWWhJakExSEZYTW95T3FiT2Z6LXpCVUs5VnhMVTFsUXFRV0ZNMWR3Y1AxUERRTDFsMjJpYl9Hd0dYaVcyM2lDTXQ2ZFloU3dHcmNkTTRtLWNhcy01NTU4Njg5OWYteGMyanEifQ.oCtAR5zL0Ooe0Yajf9G8R4aA4Yu2_da1AKWoVZ_iLa0usCKAfd8H9hDVuUcCX9sD1yXnvQ94qitbnG6dNibQAg"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"providers\": [\n\t\t{\n\t\t\t\"name\": \"nso501\"\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/providers",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"providers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Node",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlzRnJvbU5ld0xvZ2luIjoidHJ1ZSIsInBvbGljeV9pZCI6ImFkbWluIiwiYXV0aGVudGljYXRpb25EYXRlIjoiMjAxOC0wNC0xMFQyMTo0MDowNC4xNzJaW1VUQ10iLCJzdWNjZXNzZnVsQXV0aGVudGljYXRpb25IYW5kbGVycyI6IlF1ZXJ5RGF0YWJhc2VBdXRoZW50aWNhdGlvbkhhbmRsZXIiLCJpc3MiOiJodHRwczpcL1wvbG9jYWxob3N0OjU0ODlcL1NTTyIsImxhc3RfbmFtZSI6InNtaXRoIiwiY3JlZGVudGlhbFR5cGUiOiJVc2VybmFtZVBhc3N3b3JkQ3JlZGVudGlhbCIsImF1ZCI6Imh0dHBzOlwvXC8xNzIuMjMuMjQ3LjEyMzozMDYwM1wvI1wvYXBwLWRhc2hib2FyZCIsImF1dGhlbnRpY2F0aW9uTWV0aG9kIjoiUXVlcnlEYXRhYmFzZUF1dGhlbnRpY2F0aW9uSGFuZGxlciIsImxvbmdUZXJtQXV0aGVudGljYXRpb25SZXF1ZXN0VG9rZW5Vc2VkIjoiZmFsc2UiLCJjaGFuZ2VfcHdkIjoidHJ1ZSIsImV4cCI6MTUyMzQyNTIwNCwiaWF0IjoxNTIzMzk2NDA0LCJmaXJzdF9uYW1lIjoiam9obiIsImp0aSI6IlNULTUtMHNXU0ZodHhSZWVPSy0xbWZoeklLYm1TcWRLMnY2d1BIQ244SEVKdWVZcy1sYWc3dkFZUV9aNF95ak51cC0tZWlyMks4SS0wUGhpZGdKc0NXTEZnc3BlaE5MUVZuNlJPU3pYSDRNN2VhVEJyZEFZMHMyb2MxUEZLLTVONDNidDV1UUNXSS03Y3hWamI5eWFFamVvb1pZejZFMXZ2bmJSdS1jYXMtMjI3MjcwMDA5MS1jM24wNyJ9.I8suJ2_QhzE6z0wgsj7ea-wHk_7MjgCkgq542V20eF7F50hNCF8OW270pq6AWGNNQUlHsXafpXmAvo-8UlUwoA"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"data\": [\n{       \"inv_key_type\": 2,\n        \"node_ip\": {\n            \"inet_af\": 1,\n            \"inet_addr\": \"1.1.1.101\"\n        }\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/nodes",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Credentials",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{Authorization}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"data\": [\n{\n            \"profile\": \"demo1\"\n}\n]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/credentials",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"credentials"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f272790b-5c92-4ca0-a582-7d559b3496a8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "adc8e97a-07cd-41e8-b166-52af1d992600",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "NSO-API's",
+			"item": [
+				{
+					"name": "sync-check",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "cisco123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "nso",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{nso_ip}}:8080/api/running/devices/_operations/check-sync",
+							"protocol": "http",
+							"host": [
+								"{{nso_ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"running",
+								"devices",
+								"_operations",
+								"check-sync"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sync-from",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "cisco123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "nso",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://{{nso_ip}}:8080/api/running/devices/_operations/sync-from",
+							"protocol": "http",
+							"host": [
+								"{{nso_ip}}"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"running",
+								"devices",
+								"_operations",
+								"sync-from"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Enable KPI",
+			"item": [
+				{
+					"name": "Enable KPI for Interface Flap",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"kpiDevices\": {\n    \"devices\": {\n      \"device\": [\n        {\n          \"device_id\": {{routername}} ,\n          \"kpis\": {\n            \"kpi\": [\n              \n              {\n                \"kpi_id\": \"pulse_interface_flap_detector\",\n                \"cadence\": 1\n              }\n            ]\n          }\n        }\n      ]\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/hi/v1/kpiassoc/write",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"hi",
+								"v1",
+								"kpiassoc",
+								"write"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete KPI",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"devices\": [ \n  \t{{routername}}\n  \t],\n  \"kpis\": [\n    \"pulse_interface_state_info\" \n  ]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/hi/v1/kpiassoc/delete",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"hi",
+								"v1",
+								"kpiassoc",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Alerts-API's",
+			"item": [
+				{
+					"name": "List of Alerts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"levels\": [\n    \"CRITICAL\",\n    \"INFO\"\n  ],\n  \"time_ago\": \"0m\",\n  \"time_interval\": \"1d\",\n  \"offset\": \"0\",\n  \"limit\": \"51\",\n  \"top_kpis\": true\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/hi/v1/alerts/kpi/devices",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"hi",
+								"v1",
+								"alerts",
+								"kpi",
+								"devices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "KPI Critical Alert on Device",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"levels\": [\n    \"CRITICAL\"\n  ],\n  \"time_ago\": \"0m\",\n  \"time_interval\": \"7d\",\n  \"offset\": \"0\",\n  \"limit\": \"13\",\n  \"devices\": [\n    \"R4\"\n  ],\n  \"kpis\": [\n    \"pulse_interface_rate_counters\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/hi/v1/alerts/series/alerts/devices",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"hi",
+								"v1",
+								"alerts",
+								"series",
+								"alerts",
+								"devices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "KPI Critical Alert on Device -> Query",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"kpis\": [\n    \"pulse_interface_rate_counters\"\n  ]\n}\n"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/hi/v1/kpimgmt/query",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"hi",
+								"v1",
+								"kpimgmt",
+								"query"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Change-Automation",
+			"item": [
+				{
+					"name": "GET ALL Playbooks",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=UTF-8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/nca/v1/mops?limit=1000&filter.name=mop_name&filter.value=interface",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"nca",
+								"v1",
+								"mops"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1000"
+								},
+								{
+									"key": "filter.name",
+									"value": "mop_name"
+								},
+								{
+									"key": "filter.value",
+									"value": "interface"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Playbooks Op Interface",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json; charset=UTF-8",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/nca/v1/mops/router_op_interface",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"nca",
+								"v1",
+								"mops",
+								"router_op_interface"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mopjob Op Interface",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fae3fc2b-14f2-4e0c-9616-d7ab0136ec42",
+								"exec": [
+									"var body = JSON.parse(responseBody);",
+									"pm.globals.set(\"exec_id\", body.execution_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"mop_id\": \"router_op_interface\",\n\t\"device_ids\": [\n\t\t{{router_name}}\n\t\t],\n\t\"execution_params\": {\"admin_state\": \"down\", \"if_names\": [\"GigabitEthernet0/0/0/0\"], \"provider\": \"Nso\", \"collection_type\": \"telemetry\", \"mop_timeout\": \"1h\"},\n\t\"execution_policy\": {\"execution_strategy\": \"strategy_continuous\",\"on_failure\": \"on_failure_abort\"},\n\t\"check_start_time\": {{$timestamp}}\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/nca/v1/mopjobs",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"nca",
+								"v1",
+								"mopjobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET mopjobs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json; charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/nca/v1/mopjobs?limit=1000",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"nca",
+								"v1",
+								"mopjobs"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET mopjobs events",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/nca/v1/mopjobs/events?limit=100&execution_id={{exec_id}}&reverse=true&types=MOP_TASK&page=1",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"nca",
+								"v1",
+								"mopjobs",
+								"events"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "100"
+								},
+								{
+									"key": "execution_id",
+									"value": "{{exec_id}}"
+								},
+								{
+									"key": "reverse",
+									"value": "true"
+								},
+								{
+									"key": "types",
+									"value": "MOP_TASK"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET mopjob by exec_id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json; charset=UTF-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/nca/v1/mopjobs/{{exec_id}}",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"nca",
+								"v1",
+								"mopjobs",
+								"{{exec_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Remediation",
+			"item": [
+				{
+					"name": "Link Interface state change playbook",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"kpi\": [\n    {\n      \"kpi_id\": \"pulse_interface_flap_detector\",\n      \"kpi_name\": \"Interface flap detection\",\n      \"remediation\": {\n        \"url\": \"/crosswork/nca/v1/mopjobs\",\n        \"body\": {\n          \"mop_id\": \"router_op_interface\",\n          \"mop_name\": \"Interface State change\",\n          \"hosts\": \"{{ index .Content `Producer` }}\",\n          \"execution_params\": {\n            \"admin_state\": \"down\",\n            \"if_names\": [\n              \"{{ index .Content `interface-name` }}\"\n            ],\n            \"provider\": \"Nso\",\n            \"collection_type\": \"telemetry\",\n            \"mop_timeout\": \"1h\",\n            \"grafana_graphs\": [\n              \"interface-stats\"\n            ]\n          },\n          \"execution_policy\": {\n            \"execution_strategy\": \"strategy_continuous\",\n            \"on_failure\": \"on_failure_pause\"\n          }\n        }\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/hi/v1/kpimgmt/link",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"hi",
+								"v1",
+								"kpimgmt",
+								"link"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unlink a Playbook",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"kpi\": [\n    {\n      \"kpi_id\": \"pulse_interface_flap_detector\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/hi/v1/kpimgmt/unlink",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"hi",
+								"v1",
+								"kpimgmt",
+								"unlink"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alert Query for Interface Flap KPI",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a2e16338-60f2-4fa4-b774-dbea0fbae40a",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"levels\": [\n    \"CRITICAL\",\n    \"INFO\"\n  ],\n  \"time_ago\": \"0m\",\n  \"time_interval\": \"3d\",\n  \"offset\": \"0\",\n  \"limit\": \"13\",\n  \"devices\": [\n    \"R5\"\n  ],\n  \"kpis\": [\n    \"pulse_interface_flap_detector\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/hi/v1/alerts/series/alerts/devices",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"hi",
+								"v1",
+								"alerts",
+								"series",
+								"alerts",
+								"devices"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Un-Manage Devices",
+			"item": [
+				{
+					"name": "Un-Manage Device",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"devices\": [\n    \"R5\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/hi/v1/kpiassoc/delete",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"hi",
+								"v1",
+								"kpiassoc",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Un-Manage a KPI",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"kpis\": [\n    \"pulse_snmp_interface_rate_counters\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/hi/v1/kpiassoc/delete",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"hi",
+								"v1",
+								"kpiassoc",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Un-Manage a KPI on a specific device",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"devices\": [\n    \"RouterVegas\"\n  ],\n  \"kpis\": [\n    \"pulse_routing_rib_connected\"\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/hi/v1/kpiassoc/delete",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"hi",
+								"v1",
+								"kpiassoc",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete on-boarded Devices",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"data\": [\n    {\n      \"inv_key_type\": 1,\n      \"uuid\": \"2828920e-3033-3917-9a20-92a0713d7bec\"\n    },\n    {\n      \"inv_key_type\": 1,\n      \"uuid\": \"8bb7e909-c7a3-36ef-af8f-fcf815f29c14\"\n    },\n    {\n      \"inv_key_type\": 1,\n      \"uuid\": \"d09fe773-9383-358f-9db6-4058a71b477d\"\n    },\n    {\n      \"inv_key_type\": 1,\n      \"uuid\": \"39d7665c-884f-361e-ae42-a02deea0d348\"\n    },\n    {\n      \"inv_key_type\": 1,\n      \"uuid\": \"ee6505cf-76ee-337a-ae5f-61b35b34cc65\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/nodes",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"nodes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Providers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"providers\":[{\"name\":\"nso201\"},{\"name\":\"XTC\"},{\"name\":\"syslog\"},{\"name\":\"Alert\"}]}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/providers",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"providers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Credentials",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"data\": [\n    {\n      \"profile\": \"csm\",\n      \"user_pass\": [\n        {\n          \"user_name\": \"cw-admin\",\n          \"password\": \"******\",\n          \"enable_password\": 0,\n          \"enable_password_data\": \"\",\n          \"type\": \"ROBOT_USERPASS_SSH\"\n        }\n      ]\n    },\n    {\n      \"profile\": \"external\"\n    },\n    {\n      \"profile\": \"nso1\",\n      \"user_pass\": [\n        {\n          \"user_name\": \"admin\",\n          \"password\": \"******\",\n          \"type\": \"ROBOT_USERPASS_NETCONF\"\n        }\n      ]\n    },\n    {\n      \"profile\": \"demo\",\n      \"v2_info\": {\n        \"read_community\": \"******\",\n        \"write_community\": \"******\"\n      },\n      \"user_pass\": [\n        {\n          \"user_name\": \"cisco\",\n          \"password\": \"******\",\n          \"enable_password\": 0,\n          \"enable_password_data\": \"\",\n          \"type\": \"ROBOT_USERPASS_SSH\"\n        },\n        {\n          \"user_name\": \"cisco\",\n          \"password\": \"******\",\n          \"enable_password\": 0,\n          \"enable_password_data\": \"\",\n          \"type\": \"ROBOT_USERPASS_TELNET\"\n        },\n        {\n          \"user_name\": \"cisco\",\n          \"password\": \"******\",\n          \"type\": \"ROBOT_USERPASS_NETCONF\"\n        }\n      ]\n    },\n    {\n      \"profile\": \"ubu-89\",\n      \"user_pass\": [\n        {\n          \"user_name\": \"root\",\n          \"password\": \"******\",\n          \"type\": \"ROBOT_USERPASS_HTTP\"\n        }\n      ]\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/inventory/v1/credentials",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"inventory",
+								"v1",
+								"credentials"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Services API",
+			"item": [
+				{
+					"name": "Get-All service Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/platform/v1/platform/health",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"platform",
+								"v1",
+								"platform",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Health",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/platform/v1/apps/health",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"platform",
+								"v1",
+								"apps",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Topo-Health Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/platform/v1/apps/Topology-svc/health",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"platform",
+								"v1",
+								"apps",
+								"Topology-svc",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Specific Service Status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/platform/v1/apps/Collection-Infra/robot-dlminvmgr/health",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"platform",
+								"v1",
+								"apps",
+								"Collection-Infra",
+								"robot-dlminvmgr",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Specific Service Status [cli-robot]",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/platform/v1/apps/Collection-Infra/mdt-robot/health",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"platform",
+								"v1",
+								"apps",
+								"Collection-Infra",
+								"mdt-robot",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get the Roles details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/aaa/v1/role",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"aaa",
+								"v1",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET APP-Job Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/platform/v1/collect/show",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"platform",
+								"v1",
+								"collect",
+								"show"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start a service",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"Id\":\"Topology-svc\"}\n"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/platform/v1/services/start",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"platform",
+								"v1",
+								"services",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Re-start a service",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"Id\":\"Topology-svc\"}\n"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/platform/v1/services/restart",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"platform",
+								"v1",
+								"services",
+								"restart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"harsha\": {\n        \"_id\": \"\",\n        \"id\": \"\",\n        \"org_id\": \"1\",\n        \"rate\": 1000,\n        \"per\": 60,\n        \"quota_max\": -1,\n        \"quota_renewal_rate\": 60,\n        \"hmac_enabled\": false,\n        \"active\": true,\n        \"is_inactive\": false,\n        \"tags\": [],\n        \"key_expires_in\": -1,\n        \"partitions\": {\n            \"quota\": false,\n            \"rate_limit\": false,\n            \"acl\": false\n        },\n        \"access_rights\": {\n            \"api_v1_services\": {\n                \"api_name\": \"api/v1/services api\",\n                \"api_id\": \"api_v1_services\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"api_v1_spans\": {\n                \"api_name\": \"api/v1/spans api\",\n                \"api_id\": \"api_v1_spans\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"api_v1_trace\": {\n                \"api_name\": \"api/v1/trace api\",\n                \"api_id\": \"api_v1_trace\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"api_v1_traces\": {\n                \"api_name\": \"api/v1/traces api\",\n                \"api_id\": \"api_v1_traces\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"cwauthconfig\": {\n                \"api_name\": \"Auth Server Config api\",\n                \"api_id\": \"cwauthconfig\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"auth-apis\": {\n                \"api_name\": \"auth-apis api\",\n                \"api_id\": \"auth-apis\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"auth-configs\": {\n                \"api_name\": \"auth-configs api\",\n                \"api_id\": \"auth-configs\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"gcp-service\": {\n                \"api_name\": \"gcp-service api\",\n                \"api_id\": \"gcp-service\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"geoserver\": {\n                \"api_name\": \"geoserver api\",\n                \"api_id\": \"geoserver\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"guacamole\": {\n                \"api_name\": \"guacamole api\",\n                \"api_id\": \"guacamole\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"cwhi\": {\n                \"api_name\": \"HI api\",\n                \"api_id\": \"cwhi\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"cwinventory\": {\n                \"api_name\": \"inventory api\",\n                \"api_id\": \"cwinventory\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"nbi_v1_assurance\": {\n                \"api_name\": \"nbi/v1/assurance api\",\n                \"api_id\": \"nbi_v1_assurance\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"nbi_v1_central-inventory\": {\n                \"api_name\": \"nbi/v1/central-inventory api\",\n                \"api_id\": \"nbi_v1_central-inventory\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"cwnca\": {\n                \"api_name\": \"NCA api\",\n                \"api_id\": \"cwnca\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"cwpassword\": {\n                \"api_name\": \"Password Change api\",\n                \"api_id\": \"cwpassword\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"cwplatform\": {\n                \"api_name\": \"Platform api\",\n                \"api_id\": \"cwplatform\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"robot-logger\": {\n                \"api_name\": \"robot-logger api\",\n                \"api_id\": \"robot-logger\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"robot-nca\": {\n                \"api_name\": \"robot-nca api\",\n                \"api_id\": \"robot-nca\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"robot-pulse\": {\n                \"api_name\": \"robot-pulse api\",\n                \"api_id\": \"robot-pulse\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"robot-pulsecore\": {\n                \"api_name\": \"robot-pulsecore api\",\n                \"api_id\": \"robot-pulsecore\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"robot\": {\n                \"api_name\": \"Robot_Infra_API_Proxy\",\n                \"api_id\": \"robot\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"robotctl\": {\n                \"api_name\": \"robotctl api\",\n                \"api_id\": \"robotctl\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"rpd-service-manager\": {\n                \"api_name\": \"rpd-service-manager api\",\n                \"api_id\": \"rpd-service-manager\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"rpd-service-manager-socket\": {\n                \"api_name\": \"rpd-service-manager-socket api\",\n                \"api_id\": \"rpd-service-manager-socket\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"cwtopology\": {\n                \"api_name\": \"Topology api\",\n                \"api_id\": \"cwtopology\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"topology\": {\n                \"api_name\": \"topology api\",\n                \"api_id\": \"topology\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"cwaaa\": {\n                \"api_name\": \"Users and Roles api\",\n                \"api_id\": \"cwaaa\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"daas\": {\n                \"api_name\": \"WAE Design as service api\",\n                \"api_id\": \"daas\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            },\n            \"zipkin\": {\n                \"api_name\": \"zipkin api\",\n                \"api_id\": \"zipkin\",\n                \"versions\": [\n                    \"Default\"\n                ],\n                \"allowed_urls\": [\n                    {\n                        \"url\": \"/.*\",\n                        \"methods\": [\n                            \"GET\",\n                            \"POST\",\n                            \"PUT\",\n                            \"PATCH\",\n                            \"DELETE\"\n                        ]\n                    }\n                ]\n            }\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/aaa/v1/role",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"aaa",
+								"v1",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/aaa/v1/role/hsrha",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"aaa",
+								"v1",
+								"role",
+								"hsrha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a USER",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sh2\": {\n        \"Username\": \"sh2\",\n        \"Password\": \"1234\",\n        \"PolicyId\": \"harsha\",\n        \"FirstName\": \"sf\",\n        \"LastName\": \"sfd\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/aaa/v1/user",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"aaa",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/aaa/v1/user/hsrha",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"aaa",
+								"v1",
+								"user",
+								"hsrha"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Collect Logs for a service",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Type\": \"All\",\n    \"JobScope\": \"robot-topo-svc\"\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/platform/v1/collect/start",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"platform",
+								"v1",
+								"collect",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Collect All Logs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Type\": \"All\",\n    \"JobScope\": \"\"\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/platform/v1/collect/start",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"platform",
+								"v1",
+								"collect",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post the Logs to an End Point",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"CollectJobId\": \"20190411231553\",\n    \"Protocol\": \"SSH\",\n    \"SSH_Configuration\": {\n        \"Username\": \"root\",\n        \"Password\": \"C1sco12345\",\n        \"Destination\": \"172.23.193.100\",\n        \"Dest_path\": \"/root\",\n        \"Port\": \"22\"\n    }\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/platform/v1/collect-publish/start",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"platform",
+								"v1",
+								"collect-publish",
+								"start"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show all the Collect jobs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n}"
+						},
+						"url": {
+							"raw": "https://{{crosswork_ip}}:30603/crosswork/platform/v1/collect/show",
+							"protocol": "https",
+							"host": [
+								"{{crosswork_ip}}"
+							],
+							"port": "30603",
+							"path": [
+								"crosswork",
+								"platform",
+								"v1",
+								"collect",
+								"show"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "245a6747-5aaa-4b10-b96c-aea5ce44598c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7d969130-97a8-47a0-9650-7e198febabe3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
